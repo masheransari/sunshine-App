@@ -1,6 +1,6 @@
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="app_name">Sunsine Application</string>
-
+    <string name="search">Search</string>
     <!-- - - - - - - - - - - - - -->
     <!-- Used throughout Sunshine-->
     <!-- - - - - - - - - - - - - -->
