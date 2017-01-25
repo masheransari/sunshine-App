@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_item_number"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:fontFamily="monospace"
+        android:textSize="42sp"
+        tools:text="#42"
+        android:layout_gravity="center_vertical|start"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_view_holder"
+        android:layout_gravity="center_vertical|end"
+        android:fontFamily="monospace"
+        android:textColor="#000"
+        android:textSize="42sp"
+        tools:text="VIew Holder instance: 7"/>
+</FrameLayout>
