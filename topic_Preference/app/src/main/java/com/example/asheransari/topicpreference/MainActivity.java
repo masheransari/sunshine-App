@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.example.asheransari.topicpreference.AudioVisuals.AudioInputReader;
 import com.example.asheransari.topicpreference.AudioVisuals.VisualizerView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final int MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE = 88;
     private VisualizerView mVisualizerView;
@@ -47,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
         mVisualizerView.setMinSizeScale(1);
 //        SharedPreferences.Editor editor = shareP
         mVisualizerView.setColor(getString(R.string.pref_color_red_value));
+//        TODO imp1:  yeha hum register krenge apki shared pereference Changes ko..
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+//        this hum es liye kr rhe hai because hum ne esko implements kia hai SharedPreferences.onSharedPreferenceChanged
+//        ke 7....
+//        TODO destroyTechniques: ab hume esko destroy bhe krna hai to hum es trha onDestory() me kren ge
+//        esko UnRegistrere...
     }
 
     private void defaultSetup(){
@@ -118,4 +124,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+//    s apki key hai.. jo press ki gai hai...
+//        ab hum ne yeh to bata diya hai ke change pe yeh krna hai,, magar esko registered bhe to krna hai na..
+//        to esko hum register kren ge.. Ser TODO imp: [imp1]
+        if (s.equals(getString(R.string.pref_show_bass_key))) {
+            mVisualizerView.setShowBass(sharedPreferences.getBoolean(s,getResources().getBoolean(R.bool.pref_show_bass_default)));
+        }
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+//        TODO SharedPreferences.unregisterOnSharedPreferenceChangeListener:
+//        hum ne esko unregisterd kr diya hai,...
+
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+    }
 }
