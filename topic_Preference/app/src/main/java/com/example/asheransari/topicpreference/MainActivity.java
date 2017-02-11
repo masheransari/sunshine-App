@@ -42,8 +42,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 //        // COMPLETED (4) Use resources here instead of the hard coded string and boolean
 //        mVisualizerView.setShowBass(sharedPreferences.getBoolean(getString(R.string.pref_show_bass_key),
 //                getResources().getBoolean(R.bool.pref_show_bass_default)));
-        mVisualizerView.setShowMid(true);
-        mVisualizerView.setShowTreble(true);
+//        mVisualizerView.setShowMid(true);
+        mVisualizerView.setShowMid(sharedPreferences.getBoolean(getString(R.string.pref_show_mid_key),getResources().getBoolean(R.bool.pref_show_mid_default)));
+        mVisualizerView.setShowTreble(sharedPreferences.getBoolean(getString(R.string.pref_show_treble_key),getResources().getBoolean(R.bool.pref_show_treble_default)));
+
+//        mVisualizerView.setShowTreble(true);
+
+
         mVisualizerView.setMinSizeScale(1);
 //        SharedPreferences.Editor editor = shareP
         mVisualizerView.setColor(getString(R.string.pref_color_red_value));
@@ -131,6 +136,15 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 //        to esko hum register kren ge.. Ser TODO imp: [imp1]
         if (s.equals(getString(R.string.pref_show_bass_key))) {
             mVisualizerView.setShowBass(sharedPreferences.getBoolean(s,getResources().getBoolean(R.bool.pref_show_bass_default)));
+        }
+        else if(s.equals(getString(R.string.pref_show_mid_key))){
+            mVisualizerView.setShowMid(sharedPreferences.getBoolean(s,getResources().getBoolean(R.bool.pref_show_mid_default)));
+        }
+        else if(s.equals(getString(R.string.pref_show_treble_key))){
+            mVisualizerView.setShowTreble(sharedPreferences.getBoolean(s,getResources().getBoolean(R.bool.pref_show_treble_default)));
+        }
+        else{
+
         }
     }
 
