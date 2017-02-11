@@ -212,4 +212,6 @@ public class VisualizerView extends View {
         mMidSquare.setTrailColor(trailColor);
         mTrebleTriangle.setTrailColor(trailColor);
     }
+
+
 }

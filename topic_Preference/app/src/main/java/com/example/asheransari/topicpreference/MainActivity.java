@@ -2,11 +2,13 @@ package com.example.asheransari.topicpreference;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,17 +29,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_visualizer);
 
         mVisualizerView = (VisualizerView)findViewById(R.id.activity_visualizer);
-        defaultSetup();
+//        defaultSetup();
+        setupSharedPreferences();
         setupPermission();
     }
 
+    private void setupSharedPreferences(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mVisualizerView.setShowBass(sharedPreferences.getBoolean(String.valueOf(R.string.pref_show_bass_key),getResources().getBoolean(R.bool.pref_show_bass_default)));
+        mVisualizerView.setShowBass(sharedPreferences.getBoolean(getString(R.string.pref_show_bass_key),getResources().getBoolean(R.bool.pref_show_bass_default)));
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        // COMPLETED (4) Use resources here instead of the hard coded string and boolean
+//        mVisualizerView.setShowBass(sharedPreferences.getBoolean(getString(R.string.pref_show_bass_key),
+//                getResources().getBoolean(R.bool.pref_show_bass_default)));
+        mVisualizerView.setShowMid(true);
+        mVisualizerView.setShowTreble(true);
+        mVisualizerView.setMinSizeScale(1);
+//        SharedPreferences.Editor editor = shareP
+        mVisualizerView.setColor(getString(R.string.pref_color_red_value));
+    }
+
     private void defaultSetup(){
-        mVisualizerView.setShowBass(true);
+        mVisualizerView.setShowBass(false);
         mVisualizerView.setShowMid(true);
         mVisualizerView.setShowTreble(true);
         mVisualizerView.setMinSizeScale(2);
+//        SharedPreferences.Editor editor = shareP
         mVisualizerView.setColor(getString(R.string.pref_color_red_value));
     }
+
     @Override
     protected void onPause(){
         super.onPause();
